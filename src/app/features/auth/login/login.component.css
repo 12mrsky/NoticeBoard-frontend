@@ -1,0 +1,83 @@
+.login-card {
+  width: 380px;
+  background: #1e293b;
+  color: white;
+  border-radius: 12px;
+}
+
+/* CAPTCHA BOX */
+.captcha-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #0f172a;
+  padding: 12px;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Noise dots */
+.captcha-box::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(rgba(255,255,255,0.1) 1px, transparent 1px);
+  background-size: 6px 6px;
+  opacity: 0.4;
+}
+
+/* Noise line */
+.captcha-box::after {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 2px;
+  background: rgba(255,255,255,0.15);
+  top: 50%;
+  left: -50%;
+  transform: rotate(-20deg);
+}
+.captcha-box::before,
+.captcha-box::after {
+  pointer-events: none; /* allows clicking through */
+}
+
+.captcha-text {
+  letter-spacing: 4px;
+  font-weight: bold;
+  user-select: none;
+  filter: blur(0.6px);
+}
+
+.captcha-text span {
+  display: inline-block;
+}
+
+/* Refresh button */
+.captcha-refresh-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: #0f172a;
+  color: #38bdf8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Hover effect */
+.captcha-refresh-btn:hover {
+  background: #1e293b;
+  color: #0ea5e9;
+  transform: rotate(180deg) scale(1.1);
+}
+
+/* Click effect */
+.captcha-refresh-btn:active {
+  transform: scale(0.95);
+}

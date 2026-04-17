@@ -1,1 +1,225 @@
-/* You can add global styles to this file, and also import other style files */
+/* ================= GLOBAL ================= */
+
+body {
+  background: #0f172a;
+  font-family: 'Segoe UI', sans-serif;
+  color: #e2e8f0;
+}
+
+/* Smooth transitions */
+* {
+  transition: all 0.2s ease-in-out;
+}
+
+/* ================= CONTAINER ================= */
+
+.container-box {
+  background: #1e293b;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* ================= CARD ================= */
+
+.card-custom {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.card-custom:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+}
+
+/* ================= FORM ================= */
+
+.form-control,
+textarea,
+input {
+  background-color: #020617 !important;
+  border: 1px solid #334155 !important;
+  color: #ffffff !important;
+}
+
+.form-control:focus,
+textarea:focus,
+input:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: none !important;
+}
+
+/* Placeholder */
+textarea::placeholder,
+input::placeholder {
+  color: #cbd5e1 !important;
+  opacity: 1;
+}
+
+/* ================= BUTTON ================= */
+
+.btn {
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+/* Primary */
+.btn-primary {
+  background: #3b82f6;
+  border: none;
+}
+
+.btn-primary:hover {
+  background: #2563eb;
+}
+
+/* Success */
+.btn-success {
+  background: #22c55e;
+  border: none;
+}
+
+.btn-success:hover {
+  background: #16a34a;
+}
+
+/* Danger */
+.btn-danger {
+  background: #ef4444;
+  border: none;
+}
+
+.btn-danger:hover {
+  background: #dc2626;
+}
+
+/* ================= HEADER ================= */
+
+.page-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* ================= LIST ================= */
+
+.list-item {
+  background: #1e293b;
+  border: 1px solid #334155;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+/* ================= PDF PREVIEW ================= */
+
+.pdf-preview {
+  border: 1px solid #334155;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* ================= XML VIEW ================= */
+
+.xml-box {
+  background: #020617;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  padding: 15px;
+  max-height: 300px;
+  overflow: auto;
+  font-size: 13px;
+  color: #22c55e;
+}
+
+/* ================= LOADER ================= */
+
+.loader {
+  border: 4px solid #1e293b;
+  border-top: 4px solid #3b82f6;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+  margin: auto;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* ================= SCROLLBAR ================= */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 10px;
+}
+
+/* ================= VIEW LINK ================= */
+
+.view-link {
+  cursor: pointer;
+  color: #ffc107;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.view-link:hover {
+  text-decoration: underline;
+  color: #ffca2c;
+}
+
+/* ================= AUTH (LOGIN / REGISTER) ================= */
+
+.auth-wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  background: #1e293b;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+.auth-title {
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.custom-input {
+  background: #020617 !important;
+  border: 1px solid #334155 !important;
+  color: #fff !important;
+}
+
+.custom-input::placeholder {
+  color: #94a3b8;
+}
+
+.custom-btn {
+  font-weight: 500;
+  border-radius: 8px;
+}
+
+.auth-link {
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+.auth-link:hover {
+  text-decoration: underline;
+}

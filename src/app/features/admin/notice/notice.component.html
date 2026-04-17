@@ -1,0 +1,175 @@
+<div class="container mt-4 text-white">
+
+  <h2 class="mb-4">Notice Management</h2>
+
+  <button (click)="logout()" class="btn btn-danger">
+    Logout
+  </button>
+
+  <div class="card bg-dark text-white p-4 mb-4 shadow rounded">
+
+    <!-- CONTENT -->
+    <div class="mb-3">
+      <label class="form-label">Notice Content</label>
+      <textarea [(ngModel)]="content" class="form-control" rows="3"
+        placeholder="Enter notice content..."></textarea>
+    </div>
+
+    <!-- FILE UPLOAD -->
+    <div class="mb-3">
+      <label class="form-label">Upload PDF</label>
+
+      <div class="d-flex align-items-center gap-2">
+
+        <input type="file" #fileInput (change)="onFile($event)" accept="application/pdf"
+          class="form-control">
+
+        <!-- VIEW BUTTON -->
+        <button *ngIf="filePreviewUrl && !showPreview" (click)="showPreview = true"
+          class="btn btn-warning btn-sm px-2 py-1" style="height: 39px;">
+          View
+        </button>
+
+      </div>
+
+      <small *ngIf="editId && filePreviewUrl && !file" class="text-info">
+        Existing PDF attached (click View to see)
+      </small>
+      <small *ngIf="editId && !file" class="text-warning">
+  No new file selected → old PDF will be kept
+</small>
+    </div>
+    
+
+    <!-- PDF PREVIEW -->
+    <div *ngIf="showPreview" class="card bg-black p-3 mb-3 border">
+
+      <div class="d-flex justify-content-between align-items-center mb-2">
+
+        <h6 class="text-warning mb-0">
+          {{ editId ? 'Edit PDF Preview' : 'Add PDF Preview' }}
+        </h6>
+
+        <button (click)="closePreview()" class="btn btn-outline-light btn-sm">
+          ✖ Close
+        </button>
+
+      </div>
+
+      <iframe *ngIf="showPreview && filePreviewUrl"
+              [src]="filePreviewUrl"
+              width="100%" height="400">
+      </iframe>
+
+      <div class="d-flex justify-content-between mt-2">
+        <small>{{ file?.name || 'Existing File' }}</small>
+
+        <button (click)="removeFile()" class="btn btn-danger btn-sm">
+          Remove
+        </button>
+      </div>
+
+    </div>
+
+    <!-- BUTTONS -->
+    <div class="d-flex gap-2 flex-wrap">
+
+      <!-- ADD -->
+      <button *ngIf="!editId"
+              (click)="saveNotice()"
+              class="btn btn-success"
+              [disabled]="!content.trim() || !file">
+        Add
+      </button>
+
+      <!-- UPDATE -->
+      <button *ngIf="editId"
+              (click)="saveNotice()"
+              class="btn btn-warning"
+              [disabled]="!content.trim()">
+        Update
+      </button>
+
+      <!-- 🔥 TOGGLE XML BUTTON -->
+      <button *ngIf="!showXml"
+              (click)="viewXml()"
+              class="btn btn-primary">
+        View XML
+      </button>
+
+      <button *ngIf="showXml"
+              (click)="closeXml()"
+              class="btn btn-danger">
+        Close XML
+      </button>
+
+      <button *ngIf="editId"
+              (click)="resetForm()"
+              class="btn btn-secondary">
+        Cancel
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- XML VIEW -->
+  <div *ngIf="showXml" class="mt-4 card bg-dark p-3 position-relative">
+
+    <!-- 🔥 CLOSE BUTTON TOP RIGHT -->
+    <button (click)="closeXml()"
+            class="btn btn-danger btn-sm position-absolute"
+            style="top:10px; right:10px;">
+      ✖
+    </button>
+
+    <h4 class="text-info">XML Preview</h4>
+
+    <button (click)="downloadXml()" class="btn btn-success mb-2">
+      Download XML
+    </button>
+
+    <div style="background:#111; padding:15px; max-height:400px; overflow:auto; border-radius:6px;">
+      <pre style="color:#00ffcc; white-space: pre-wrap;">
+{{ xmlData }}
+      </pre>
+    </div>
+
+  </div>
+
+  <!-- EMPTY -->
+  <div *ngIf="notices.length === 0" class="text-muted">
+    No notices available
+  </div>
+
+  <!-- LIST -->
+  <div *ngFor="let n of notices; trackBy: trackById"
+       class="card bg-secondary text-white p-3 mb-3">
+
+    <h5>{{ n.content }}</h5>
+
+    <div class="d-flex gap-2 mt-2">
+     <!-- <button class="btn btn-outline-light btn-sm"
+        [disabled]="!n.fileUrl"
+        (click)="openPdf(n.fileUrl)">
+  Open PDF
+</button> -->
+      <button class="btn btn-primary"
+              *ngIf="n.fileUrl"
+              (click)="openPdf(n.fileUrl)">
+        Open PDF
+      </button>
+
+      <button (click)="edit(n)" class="btn btn-warning btn-sm">
+        Edit
+      </button>
+
+      <button (click)="delete(n.id)" class="btn btn-danger btn-sm">
+        Delete
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

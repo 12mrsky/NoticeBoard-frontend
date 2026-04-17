@@ -1,0 +1,57 @@
+<div class="d-flex justify-content-center align-items-center vh-100 bg-dark">
+
+  <div class="card shadow p-4 login-card">
+
+    <h3 class="text-center mb-4">Admin Login</h3>
+
+    <div *ngIf="errorMessage" class="alert alert-danger py-2">
+      {{ errorMessage }}
+    </div>
+
+    <input [(ngModel)]="username"
+           placeholder="Username"
+           class="form-control mb-3" />
+
+    <input [(ngModel)]="password"
+           type="password"
+           placeholder="Password"
+           class="form-control mb-3" />
+
+    <!-- ✅ PROFESSIONAL CAPTCHA -->
+    <div class="captcha-box mb-3">
+
+      <div class="captcha-text">
+        <span *ngFor="let char of captchaText.split(''); let i = index"
+              [ngStyle]="captchaStyles[i]">
+          {{ char }}
+        </span>
+      </div>
+
+      <!-- ✅ FIXED BUTTON -->
+<!-- <span class="captcha-refresh-text" (click)="generateCaptcha()">
+  Refresh
+</span> -->
+<button type="button"
+        class="captcha-refresh-btn"
+        (click)="generateCaptcha()"
+        title="Reload captcha">
+  <i class="fas fa-rotate-right"></i>
+</button>
+    </div>
+
+    <input [(ngModel)]="userCaptcha"
+           placeholder="Enter captcha"
+           class="form-control mb-3" />
+
+    <button (click)="login()"
+            [disabled]="loading"
+            class="btn btn-primary w-100">
+
+      <span *ngIf="!loading">Login</span>
+      <span *ngIf="loading">Please wait...</span>
+
+    </button>
+
+  </div>
+
+</div>
