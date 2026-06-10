@@ -106,13 +106,14 @@ export class LoginComponent {
     // ✅ store token
     this.auth.setSession(data.token, data.role);
 
-    console.log('Login successful', data);
-    console.log('Token stored:', this.auth.getToken());
+    // console.log('Login successful', data);
+    // console.log('Token stored:', this.auth.getToken());
 
     this.loading = false;
 
     // ✅ navigate
-    this.router.navigate(['/admin/notice']);
+    // this.router.navigate(['/admin/notice']);
+    
   },
 
   error: (err: any) => {

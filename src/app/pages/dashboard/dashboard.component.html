@@ -1,0 +1,185 @@
+<div class="dashboard-wrapper">
+
+  <div class="page-title">
+    <h2>Excise Dashboard</h2>
+    <p>Executive Summary & Analytics</p>
+  </div>
+
+  <!-- KPI CARDS -->
+
+  <div class="row g-3">
+
+    <div class="col-md-2">
+      <div class="kpi-card orange">
+        <h6>Inactive Notices</h6>
+        <h2>{{ dashboard?.inactiveNotices }}</h2>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <div class="kpi-card green">
+        <h6>Active Notices</h6>
+        <h2>{{ dashboard?.activeNotices }}</h2>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <div class="kpi-card red">
+        <h6>Total Users</h6>
+        <h2>{{ dashboard?.totalUsers }}</h2>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <div class="kpi-card blue">
+        <h6>Total Notices</h6>
+        <h2>{{ dashboard?.totalNotices }}</h2>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <div class="kpi-card purple">
+        <h6>Active %</h6>
+        <h2>
+          {{
+            dashboard
+              ? ((dashboard.activeNotices * 100) / dashboard.totalNotices).toFixed(1)
+              : 0
+          }}%
+        </h2>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <div class="kpi-card cyan">
+        <h6>Inactive %</h6>
+        <h2>
+          {{
+            dashboard
+              ? ((dashboard.inactiveNotices * 100) / dashboard.totalNotices).toFixed(1)
+              : 0
+          }}%
+        </h2>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SECOND ROW -->
+
+  <div class="row mt-4">
+
+    <!-- Notifications -->
+
+    <div class="col-lg-4">
+      <div class="panel">
+
+        <h5>Notifications</h5>
+
+        <ul>
+          <li>Total Notices : {{ dashboard?.totalNotices }}</li>
+          <li>Active Notices : {{ dashboard?.activeNotices }}</li>
+          <li>Inactive Notices : {{ dashboard?.inactiveNotices }}</li>
+          <li>Total Users : {{ dashboard?.totalUsers }}</li>
+        </ul>
+
+      </div>
+    </div>
+
+    <!-- DONUT CHART -->
+
+    <div class="col-lg-4">
+      <div class="panel">
+
+        <h5>Application Status</h5>
+
+        <apx-chart
+          [series]="donutSeries"
+          [chart]="donutChart"
+          [labels]="donutLabels">
+        </apx-chart>
+
+      </div>
+    </div>
+
+    <!-- SUMMARY -->
+
+    <div class="col-lg-4">
+      <div class="panel summary">
+
+        <h5>Summary</h5>
+
+        <p>
+          <strong>Total Notices:</strong>
+          {{ dashboard?.totalNotices }}
+        </p>
+
+        <p>
+          <strong>Active Notices:</strong>
+          {{ dashboard?.activeNotices }}
+        </p>
+
+        <p>
+          <strong>Inactive Notices:</strong>
+          {{ dashboard?.inactiveNotices }}
+        </p>
+
+        <p>
+          <strong>Total Users:</strong>
+          {{ dashboard?.totalUsers }}
+        </p>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- THIRD ROW -->
+
+  <div class="row mt-4">
+
+    <div class="col-lg-8">
+
+      <div class="panel">
+
+        <h5>Monthly Performance</h5>
+
+        <apx-chart
+          [series]="barSeries"
+          [chart]="barChart"
+          [xaxis]="barXAxis">
+        </apx-chart>
+
+      </div>
+
+    </div>
+
+    <div class="col-lg-4">
+
+      <div class="panel">
+
+        <h5>Quick Actions</h5>
+
+        <button class="btn btn-primary w-100 mb-2">
+          New Notice
+        </button>
+
+        <button class="btn btn-success w-100 mb-2">
+          Generate Report
+        </button>
+
+        <button class="btn btn-warning w-100 mb-2">
+          Export Notices
+        </button>
+
+        <button class="btn btn-info w-100">
+          Refresh Dashboard
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

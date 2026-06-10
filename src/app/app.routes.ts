@@ -1,25 +1,51 @@
 import { Routes } from '@angular/router';
+
 import { LoginComponent } from './features/auth/login/login.component';
 import { NoticeComponent } from './features/admin/notice/notice.component';
+
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
+
 import { authGuard } from './core/guards/auth.guard';
-import { adminGuard } from './core/guards/admin.guard';
 
 export const routes: Routes = [
 
-  { path: 'login', component: LoginComponent },
-
+  {
+    path: 'login',
+    component: LoginComponent
+  },
 
   {
     path: 'admin',
+    component: AdminLayoutComponent,
     canActivate: [authGuard],
-    canActivateChild: [authGuard],
+
     children: [
-      { path: 'notice', component: NoticeComponent }, // ✅ only this
-      { path: '', redirectTo: 'notice', pathMatch: 'full' } // 🔥 default
+      {
+        path: 'dashboard',
+        component: DashboardComponent
+      },
+      {
+        path: 'notice',
+        component: NoticeComponent
+      },
+      {
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full'
+      }
     ]
   },
 
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
 
-  { path: '**', redirectTo: 'login' }
+  {
+    path: '**',
+    redirectTo: 'login'
+  }
+
 ];

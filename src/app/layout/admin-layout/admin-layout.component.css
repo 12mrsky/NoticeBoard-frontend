@@ -1,0 +1,91 @@
+/* Sidebar */
+.sidebar{
+  width:250px;
+  height:100vh;
+
+  position:fixed;
+  top:0;
+  left:0;
+
+  z-index:1000;
+
+  background:#111827;
+  color:#ffffff;
+
+  display:flex;
+  flex-direction:column;
+}
+
+/* Header */
+.sidebar-header{
+  display:flex;
+  align-items:center;
+  gap:15px;
+
+  padding:15px;
+
+  border-bottom:1px solid rgba(255,255,255,.15);
+}
+
+.portal-title{
+  font-size:30px;
+  font-weight:600;
+  color:white;
+}
+
+
+/* Links */
+.sidebar-link{
+  background:#111827 !important;
+  color:white !important;
+  border:none !important;
+
+  transition:.3s;
+}
+
+.sidebar-link:hover{
+  background:#f59e0b !important;
+  color:black !important;
+}
+
+.sidebar-link.active{
+  background:#f59e0b !important;
+  color:black !important;
+  font-weight:600;
+}
+
+/* Footer */
+.sidebar-footer{
+  padding:15px;
+  border-top:1px solid rgba(255,255,255,.15);
+}
+
+/* Content */
+.content-area{
+  flex:1;
+  transition:.3s ease;
+}
+
+.content-wrapper{
+  padding:20px;
+}
+
+/* Toggle Button */
+.toggle-btn{
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 2000;
+
+  width: 45px;
+  height: 45px;
+}
+
+/* Dark Theme */
+body{
+  background:#061433;
+}
+.content-wrapper{
+  padding: 20px;
+  padding-top: 80px; /* important */
+}

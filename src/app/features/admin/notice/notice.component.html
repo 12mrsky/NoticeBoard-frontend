@@ -6,8 +6,8 @@
     Logout
   </button>
 
-  <div class="card bg-dark text-white p-4 mb-4 shadow rounded">
-
+<div id="editSection"
+     class="card bg-dark text-white p-4 mb-4 shadow rounded">
     <!-- CONTENT -->
     <div class="mb-3">
       <label class="form-label">Notice Content</label>
@@ -15,30 +15,65 @@
         placeholder="Enter notice content..."></textarea>
     </div>
 
-    <!-- FILE UPLOAD -->
     <div class="mb-3">
-      <label class="form-label">Upload PDF</label>
+  <label class="form-label">Notice Date</label>
 
-      <div class="d-flex align-items-center gap-2">
+<div class="input-group">
 
-        <input type="file" #fileInput (change)="onFile($event)" accept="application/pdf"
-          class="form-control">
+  <button
+    class="btn btn-warning"
+    type="button"
+    (click)="dateInput.showPicker()">
 
-        <!-- VIEW BUTTON -->
-        <button *ngIf="filePreviewUrl && !showPreview" (click)="showPreview = true"
-          class="btn btn-warning btn-sm px-2 py-1" style="height: 39px;">
-          View
-        </button>
+    📅
 
-      </div>
+  </button>
 
-      <small *ngIf="editId && filePreviewUrl && !file" class="text-info">
-        Existing PDF attached (click View to see)
-      </small>
-      <small *ngIf="editId && !file" class="text-warning">
-  No new file selected → old PDF will be kept
-</small>
-    </div>
+  <input
+    #dateInput
+    placeholder="YYYY-MM-DD"
+    type="date"
+    [(ngModel)]="noticeDate"
+    class="form-control">
+
+</div>
+</div>
+
+    <!-- FILE UPLOAD -->
+   <div class="mb-3">
+  <label class="form-label">Upload PDF</label>
+
+  <div class="d-flex align-items-center gap-2">
+
+    <input type="file"
+           #fileInput
+           (change)="onFile($event)"
+           accept="application/pdf"
+           class="form-control">
+
+    <!-- ✅ SHOW SELECTED FILE NAME -->
+    <span *ngIf="selectedFileName" class="text-light small">
+      {{ selectedFileName }}
+    </span>
+
+    <!-- VIEW BUTTON -->
+    <button *ngIf="filePreviewUrl && !showPreview"
+            (click)="showPreview = true"
+            class="btn btn-warning btn-sm px-2 py-1"
+            style="height: 39px;">
+      View
+    </button>
+
+  </div>
+
+  <small *ngIf="editId && filePreviewUrl && !file" class="text-info">
+    Existing PDF attached (click View to see)
+  </small>
+
+  <small *ngIf="editId && !file" class="text-warning">
+    No new file selected → old PDF will be kept
+  </small>
+</div>
     
 
     <!-- PDF PREVIEW -->
@@ -56,10 +91,11 @@
 
       </div>
 
-      <iframe *ngIf="showPreview && filePreviewUrl"
-              [src]="filePreviewUrl"
-              width="100%" height="400">
-      </iframe>
+      <button *ngIf="rawFileUrl"
+        (click)="openPdf(rawFileUrl)"
+        class="btn btn-warning btn-sm px-2 py-1">
+  View
+</button>
 
       <div class="d-flex justify-content-between mt-2">
         <small>{{ file?.name || 'Existing File' }}</small>
@@ -78,7 +114,8 @@
       <button *ngIf="!editId"
               (click)="saveNotice()"
               class="btn btn-success"
-              [disabled]="!content.trim() || !file">
+              [disabled]="!content.trim() || !file || !noticeDate">
+
         Add
       </button>
 
@@ -143,33 +180,68 @@
   </div>
 
   <!-- LIST -->
+  <!-- YEAR WISE NOTICE LIST -->
+<!-- YEAR BUTTONS -->
+<div class="mb-4">
+
+  <button
+    *ngFor="let year of years"
+    class="btn btn-warning me-2 mb-2"
+    (click)="loadYear(+year)">
+
+    {{ year }}
+
+  </button>
+
+</div>
+
+<!-- SELECTED YEAR NOTICES -->
+<div *ngIf="selectedYear">
+
+  <h2 class="text-warning mb-3">
+    Notices - {{ selectedYear }}
+  </h2>
+
   <div *ngFor="let n of notices; trackBy: trackById"
        class="card bg-secondary text-white p-3 mb-3">
 
-    <h5>{{ n.content }}</h5>
+    <h5
+      style="cursor:pointer;color:white;display:inline-block;"
+      (click)="n.fileUrl && openPdf(n.fileUrl)">
+
+      {{ n.content }}
+
+    </h5>
+
+    <small class="text-light">
+      {{ n.dateTime | date:'dd/MM/yyyy' }}
+    </small>
 
     <div class="d-flex gap-2 mt-2">
-     <!-- <button class="btn btn-outline-light btn-sm"
-        [disabled]="!n.fileUrl"
+
+      <button
+        class="btn btn-primary"
+        *ngIf="n.fileUrl"
         (click)="openPdf(n.fileUrl)">
-  Open PDF
-</button> -->
-      <button class="btn btn-primary"
-              *ngIf="n.fileUrl"
-              (click)="openPdf(n.fileUrl)">
         Open PDF
       </button>
 
-      <button (click)="edit(n)" class="btn btn-warning btn-sm">
+      <button
+        (click)="edit(n)"
+        class="btn btn-warning btn-sm">
         Edit
       </button>
 
-      <button (click)="delete(n.id)" class="btn btn-danger btn-sm">
+      <button
+        (click)="delete(n.id)"
+        class="btn btn-danger btn-sm">
         Delete
       </button>
 
     </div>
 
   </div>
+
+</div>
 
 </div>

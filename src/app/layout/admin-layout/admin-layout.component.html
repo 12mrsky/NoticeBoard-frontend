@@ -1,0 +1,159 @@
+<div class="d-flex">
+
+  <!-- Sidebar -->
+  <div
+    *ngIf="!sidebarCollapsed"
+    class="sidebar">
+
+    <!-- Header -->
+    <div class="sidebar-header">
+
+      <button
+        class="btn btn-warning"
+        (click)="toggleSidebar()">
+        ☰
+      </button>
+
+      <span class="portal-title">
+        Excise Portal
+      </span>
+
+    </div>
+
+<!-- Menu -->
+<div class="list-group list-group-flush flex-grow-1">
+
+  <a
+    routerLink="/admin/dashboard"
+    routerLinkActive="active"
+    class="list-group-item list-group-item-action sidebar-link">
+    Dashboard
+  </a>
+  <a
+    routerLink="/admin/notice"
+    routerLinkActive="active"
+    class="list-group-item list-group-item-action sidebar-link">
+    Notice Management
+  </a>
+
+  <a
+    routerLink="/admin/challan"
+    class="list-group-item list-group-item-action sidebar-link">
+    Challan
+  </a>
+
+  <a
+    routerLink="/admin/cm"
+    class="list-group-item list-group-item-action sidebar-link">
+    CM
+  </a>
+
+  <a
+    routerLink="/admin/company"
+    class="list-group-item list-group-item-action sidebar-link">
+    Company
+  </a>
+
+  <a
+    routerLink="/admin/crime-investigation"
+    class="list-group-item list-group-item-action sidebar-link">
+    Crime Investigation
+  </a>
+
+  <a
+    routerLink="/admin/excise"
+    class="list-group-item list-group-item-action sidebar-link">
+    Excise
+  </a>
+
+  <a
+    routerLink="/admin/excise-reports"
+    class="list-group-item list-group-item-action sidebar-link">
+    Excise Reports
+  </a>
+
+  <a
+    routerLink="/admin/import-export"
+    class="list-group-item list-group-item-action sidebar-link">
+    Import / Export
+  </a>
+
+  <a
+    routerLink="/admin/label-registration"
+    class="list-group-item list-group-item-action sidebar-link">
+    Label Registration
+  </a>
+
+  <a
+    routerLink="/admin/license"
+    class="list-group-item list-group-item-action sidebar-link">
+    License
+  </a>
+
+  <a
+    routerLink="/admin/master"
+    class="list-group-item list-group-item-action sidebar-link">
+    Master
+  </a>
+
+  <a
+    routerLink="/admin/patrak"
+    class="list-group-item list-group-item-action sidebar-link">
+    Patrak
+  </a>
+
+  <a
+    routerLink="/admin/permit"
+    class="list-group-item list-group-item-action sidebar-link">
+    Permit
+  </a>
+
+  <a
+    routerLink="/admin/property-detail"
+    class="list-group-item list-group-item-action sidebar-link">
+    Property Detail
+  </a>
+
+  <a
+    routerLink="/admin/user-management"
+    class="list-group-item list-group-item-action sidebar-link">
+    User Management
+  </a>
+
+</div>
+
+    <!-- Logout -->
+    <div class="sidebar-footer">
+
+      <button
+        class="btn btn-danger w-100"
+        (click)="logout()">
+        Logout
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- Content -->
+  <div
+    class="content-area"
+    [style.margin-left]="sidebarCollapsed ? '0px' : '250px'">
+
+    <!-- Toggle Button -->
+    <button
+      *ngIf="sidebarCollapsed"
+      class="btn btn-warning toggle-btn"
+      (click)="toggleSidebar()">
+      ☰
+    </button>
+
+    <div class="content-wrapper">
+
+      <router-outlet></router-outlet>
+
+    </div>
+
+  </div>
+
+</div>

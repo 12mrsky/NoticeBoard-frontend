@@ -4,6 +4,7 @@ body {
   background: #0f172a;
   font-family: 'Segoe UI', sans-serif;
   color: #e2e8f0;
+  font-size: 13px;
 }
 
 /* Smooth transitions */
@@ -98,7 +99,7 @@ input::placeholder {
 /* ================= HEADER ================= */
 
 .page-title {
-  font-size: 24px;
+  font-size: 15px;
   font-weight: 600;
   margin-bottom: 20px;
 }
@@ -223,3 +224,35 @@ input::placeholder {
 .auth-link:hover {
   text-decoration: underline;
 }
+/* SMALLER TEXT */
+h5 {
+  font-size: 15px;
+}
+
+h2 {
+  font-size: 22px;
+}
+
+small {
+  font-size: 12px;
+}
+
+/* SMALLER BUTTONS */
+.btn {
+  font-size: 13px !important;
+  padding: 5px 10px !important;
+}
+
+/* SMALLER INPUTS */
+.form-control,
+textarea,
+input {
+  font-size: 12px !important;
+}
+
+/* VIEW LINK */
+.view-link {
+  font-size: 10px;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

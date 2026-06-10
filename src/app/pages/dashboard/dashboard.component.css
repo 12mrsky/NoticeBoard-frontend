@@ -1,0 +1,158 @@
+.dashboard-wrapper {
+  min-height: 100vh;
+  padding: 25px;
+  background: #07152f;
+  color: #fff;
+}
+
+.page-title h2 {
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.page-title p {
+  color: #cbd5e1;
+  margin-bottom: 25px;
+}
+
+/* KPI Cards */
+
+.kpi-card {
+  border-radius: 15px;
+  padding: 20px;
+  color: #fff;
+  min-height: 120px;
+  box-shadow: 0 4px 20px rgba(0,0,0,.25);
+  transition: 0.3s;
+}
+
+.kpi-card:hover {
+  transform: translateY(-5px);
+}
+
+.kpi-card h6 {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.kpi-card h2 {
+  font-size: 34px;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Card Colors */
+
+.orange {
+  background: linear-gradient(135deg,#f59e0b,#fbbf24);
+}
+
+.green {
+  background: linear-gradient(135deg,#22c55e,#4ade80);
+}
+
+.red {
+  background: linear-gradient(135deg,#ef4444,#f87171);
+}
+
+.blue {
+  background: linear-gradient(135deg,#2563eb,#60a5fa);
+}
+
+.purple {
+  background: linear-gradient(135deg,#8b5cf6,#a78bfa);
+}
+
+.cyan {
+  background: linear-gradient(135deg,#06b6d4,#67e8f9);
+}
+
+/* Panels */
+
+.panel {
+  background: #0b1d3a;
+  border-radius: 15px;
+  padding: 20px;
+  height: 100%;
+  border: 1px solid rgba(255,255,255,.08);
+  box-shadow: 0 4px 20px rgba(0,0,0,.2);
+}
+
+.panel h5 {
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.panel ul {
+  padding-left: 20px;
+}
+
+.panel li {
+  margin-bottom: 12px;
+  color: #e2e8f0;
+}
+
+/* Summary */
+
+.summary p {
+  margin-bottom: 12px;
+  font-size: 15px;
+}
+
+/* Buttons */
+
+.btn {
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+/* Apex Charts */
+
+apx-chart {
+  display: block;
+  width: 100%;
+}
+
+/* Apex Export Menu */
+
+/* Toolbar Button */
+
+
+
+@media (max-width: 992px) {
+
+  .dashboard-wrapper {
+    padding: 15px;
+  }
+
+  .kpi-card {
+    margin-bottom: 15px;
+  }
+}
+:host ::ng-deep .apexcharts-toolbar {
+  background: #0b1d3a !important;
+  border-radius: 8px !important;
+}
+
+:host ::ng-deep .apexcharts-menu-icon {
+  background: #e6e7eb !important;
+  border-radius: 8px !important;
+  padding: 4px !important;
+}
+
+:host ::ng-deep .apexcharts-menu-icon svg {
+  fill: #ffffff !important;
+}
+
+:host ::ng-deep .apexcharts-menu {
+  background: #0b1d3a !important;
+  border: 1px solid #2563eb !important;
+}
+
+:host ::ng-deep .apexcharts-menu-item {
+  color: #ffffff !important;
+}
+
+:host ::ng-deep .apexcharts-menu-item:hover {
+  background: #2563eb !important;
+}
