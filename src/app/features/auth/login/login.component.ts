@@ -112,8 +112,7 @@ export class LoginComponent {
     this.loading = false;
 
     // ✅ navigate
-    // this.router.navigate(['/admin/notice']);
-    
+    this.router.navigate(['/admin/dashboard']);
   },
 
   error: (err: any) => {

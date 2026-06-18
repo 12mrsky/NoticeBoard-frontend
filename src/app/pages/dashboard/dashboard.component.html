@@ -1,180 +1,217 @@
-<div class="dashboard-wrapper">
+<!-- =========================
+     TOP BAR
+========================= -->
+
+<div class="dashboard-topbar">
 
   <div class="page-title">
     <h2>Excise Dashboard</h2>
     <p>Executive Summary & Analytics</p>
   </div>
 
-  <!-- KPI CARDS -->
+  <div class="topbar-right">
 
-  <div class="row g-3">
 
-    <div class="col-md-2">
-      <div class="kpi-card orange">
-        <h6>Inactive Notices</h6>
-        <h2>{{ dashboard?.inactiveNotices }}</h2>
+<div class="fy-selector">
+  <label>Financial Year</label>
+
+  <select
+    class="form-select"
+    [(ngModel)]="selectedFinancialYear"
+    (change)="onFinancialYearChange()">
+
+    <option
+      *ngFor="let year of financialYears"
+      [value]="year">
+
+      {{ year }}
+
+    </option>
+
+  </select>
+</div>
+
+<div class="notification-icon">
+
+  <i class="bi bi-bell-fill"></i>
+
+
+</div>
+
+<div class="welcome-card">
+
+  <div>
+    <h6>WELCOME, {{ userName }}</h6>
+    <small>Excise Portal</small>
+  </div>
+
+  <div class="user-avatar">
+    <i class="bi bi-person-circle"></i>
+  </div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="row g-4 mb-4">
+
+  <!-- Total Revenue -->
+
+  <div class="col-lg-3 col-md-6">
+
+    <div class="revenue-card">
+
+      <div class="revenue-header">
+
+        <div class="revenue-icon revenue-blue">
+          <i class="bi bi-currency-rupee"></i>
+        </div>
+
+        <div>
+          <h6>Total Revenue (FY)</h6>
+
+          <h2>
+            ₹ {{ totalRevenue | number:'1.2-2' }} Cr
+          </h2>
+
+          <small>
+            Target : ₹ {{ targetRevenue | number:'1.0-0' }} Cr
+          </small>
+
+        </div>
+
       </div>
-    </div>
 
-    <div class="col-md-2">
-      <div class="kpi-card green">
-        <h6>Active Notices</h6>
-        <h2>{{ dashboard?.activeNotices }}</h2>
-      </div>
-    </div>
+      <div class="progress mt-3">
 
-    <div class="col-md-2">
-      <div class="kpi-card red">
-        <h6>Total Users</h6>
-        <h2>{{ dashboard?.totalUsers }}</h2>
-      </div>
-    </div>
+        <div
+          class="progress-bar bg-primary"
+          [style.width.%]="achievementPercent">
 
-    <div class="col-md-2">
-      <div class="kpi-card blue">
-        <h6>Total Notices</h6>
-        <h2>{{ dashboard?.totalNotices }}</h2>
-      </div>
-    </div>
+        </div>
 
-    <div class="col-md-2">
-      <div class="kpi-card purple">
-        <h6>Active %</h6>
-        <h2>
-          {{
-            dashboard
-              ? ((dashboard.activeNotices * 100) / dashboard.totalNotices).toFixed(1)
-              : 0
-          }}%
-        </h2>
       </div>
-    </div>
 
-    <div class="col-md-2">
-      <div class="kpi-card cyan">
-        <h6>Inactive %</h6>
-        <h2>
-          {{
-            dashboard
-              ? ((dashboard.inactiveNotices * 100) / dashboard.totalNotices).toFixed(1)
-              : 0
-          }}%
-        </h2>
+      <div class="text-end mt-2">
+
+        <span class="badge bg-primary">
+          {{ achievementPercent }}%
+        </span>
+
       </div>
+
     </div>
 
   </div>
 
-  <!-- SECOND ROW -->
+  <!-- Current Month Revenue -->
 
-  <div class="row mt-4">
+  <div class="col-lg-3 col-md-6">
 
-    <!-- Notifications -->
+    <div class="revenue-card">
 
-    <div class="col-lg-4">
-      <div class="panel">
+      <div class="revenue-header">
 
-        <h5>Notifications</h5>
+        <div class="revenue-icon revenue-green">
+          <i class="bi bi-calendar-event"></i>
+        </div>
 
-        <ul>
-          <li>Total Notices : {{ dashboard?.totalNotices }}</li>
-          <li>Active Notices : {{ dashboard?.activeNotices }}</li>
-          <li>Inactive Notices : {{ dashboard?.inactiveNotices }}</li>
-          <li>Total Users : {{ dashboard?.totalUsers }}</li>
-        </ul>
+        <div>
 
-      </div>
-    </div>
+          <h6>Current Month Revenue</h6>
 
-    <!-- DONUT CHART -->
+          <h2>
+            ₹ {{ currentMonthRevenue | number:'1.2-2' }} Cr
+          </h2>
 
-    <div class="col-lg-4">
-      <div class="panel">
+          <small>
+            {{ currentMonthName }}
+          </small>
 
-        <h5>Application Status</h5>
-
-        <apx-chart
-          [series]="donutSeries"
-          [chart]="donutChart"
-          [labels]="donutLabels">
-        </apx-chart>
+        </div>
 
       </div>
-    </div>
 
-    <!-- SUMMARY -->
+      <div class="growth-pill positive">
 
-    <div class="col-lg-4">
-      <div class="panel summary">
+        <i class="bi bi-arrow-up"></i>
 
-        <h5>Summary</h5>
+        {{ growthPercent }}%
 
-        <p>
-          <strong>Total Notices:</strong>
-          {{ dashboard?.totalNotices }}
-        </p>
-
-        <p>
-          <strong>Active Notices:</strong>
-          {{ dashboard?.activeNotices }}
-        </p>
-
-        <p>
-          <strong>Inactive Notices:</strong>
-          {{ dashboard?.inactiveNotices }}
-        </p>
-
-        <p>
-          <strong>Total Users:</strong>
-          {{ dashboard?.totalUsers }}
-        </p>
+        <span>vs Last Month</span>
 
       </div>
+
     </div>
 
   </div>
 
-  <!-- THIRD ROW -->
+  <!-- Today's Collection -->
 
-  <div class="row mt-4">
+  <div class="col-lg-3 col-md-6">
 
-    <div class="col-lg-8">
+    <div class="revenue-card">
 
-      <div class="panel">
+      <div class="revenue-header">
 
-        <h5>Monthly Performance</h5>
+        <div class="revenue-icon revenue-orange">
+          <i class="bi bi-wallet2"></i>
+        </div>
 
-        <apx-chart
-          [series]="barSeries"
-          [chart]="barChart"
-          [xaxis]="barXAxis">
-        </apx-chart>
+        <div>
+
+          <h6>Today's Collection</h6>
+
+          <h2>₹ 0.00 Cr</h2>
+
+          <small>
+            {{ today | date:'dd MMM yyyy' }}
+          </small>
+
+        </div>
+
+      </div>
+
+      <div class="growth-pill positive">
+
+        <i class="bi bi-arrow-up"></i>
+
+        0%
+
+        <span>vs Yesterday</span>
 
       </div>
 
     </div>
 
-    <div class="col-lg-4">
+  </div>
 
-      <div class="panel">
+  <!-- Growth -->
 
-        <h5>Quick Actions</h5>
+  <div class="col-lg-3 col-md-6">
 
-        <button class="btn btn-primary w-100 mb-2">
-          New Notice
-        </button>
+    <div class="revenue-card">
 
-        <button class="btn btn-success w-100 mb-2">
-          Generate Report
-        </button>
+      <div class="revenue-header">
 
-        <button class="btn btn-warning w-100 mb-2">
-          Export Notices
-        </button>
+        <div class="revenue-icon revenue-purple">
+          <i class="bi bi-graph-up-arrow"></i>
+        </div>
 
-        <button class="btn btn-info w-100">
-          Refresh Dashboard
-        </button>
+        <div>
+
+          <h6>Growth (vs Last Month)</h6>
+
+          <h2>
+            {{ growthPercent }}%
+          </h2>
+
+          <small>Positive Growth</small>
+
+        </div>
 
       </div>
 
@@ -183,3 +220,474 @@
   </div>
 
 </div>
+<!-- =========================
+     SUMMARY + ALERTS
+========================= -->
+
+<div class="row mt-4">
+
+  <!-- APPLICATION SUMMARY -->
+  <div class="col-lg-8">
+
+
+<div class="application-summary">
+
+  <!-- Header -->
+
+  <div class="summary-header">
+
+    <div>
+      <h5>Application Summary</h5>
+      <small>Track all application statistics</small>
+    </div>
+
+    <div class="main-tabs">
+
+      <button
+        [class.active]="summaryTab === 'license'"
+        (click)="summaryTab='license'">
+        License
+      </button>
+
+      <button
+        [class.active]="summaryTab === 'trade'"
+        (click)="summaryTab='trade'">
+        Import / Export
+      </button>
+
+      <button
+        [class.active]="summaryTab === 'label'"
+        (click)="summaryTab='label'">
+        Label
+      </button>
+
+      <button
+        [class.active]="summaryTab === 'company'"
+        (click)="summaryTab='company'">
+        Company
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- ====================================
+       LICENSE
+  ==================================== -->
+
+  <ng-container *ngIf="summaryTab === 'license'">
+
+<div class="filters">
+  <label>
+    <input
+      type="radio"
+      name="licenseType"
+      value="all"
+      [(ngModel)]="licenseType">
+
+    <span>
+      <i class="bi bi-collection-fill"></i>
+      ALL
+    </span>
+  </label>
+
+  <label>
+    <input
+      type="radio"
+      name="licenseType"
+      value="bar"
+      [(ngModel)]="licenseType">
+
+    <span>
+      <i class="bi bi-cup-straw"></i>
+      BAR
+    </span>
+  </label>
+
+  <label>
+    <input
+      type="radio"
+      name="licenseType"
+      value="military"
+      [(ngModel)]="licenseType">
+
+    <span>
+      <i class="bi bi-shield-fill-check"></i>
+      MILITARY
+    </span>
+  </label>
+
+  <label>
+    <input
+      type="radio"
+      name="licenseType"
+      value="other"
+      [(ngModel)]="licenseType">
+
+    <span>
+      <i class="bi bi-grid-3x3-gap-fill"></i>
+      OTHER
+    </span>
+  </label>
+
+</div>
+
+    <div class="summary-grid">
+
+      <div
+        class="summary-card"
+        *ngFor="let card of licenseCards"
+        [ngClass]="card.class">
+
+        <div class="icon-box">
+          <i class="bi" [ngClass]="card.icon"></i>
+        </div>
+
+        <div class="card-content">
+          <h2>{{card.value}}</h2>
+          <p>{{card.title}}</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </ng-container>
+
+  <!-- ====================================
+       IMPORT EXPORT
+  ==================================== -->
+
+  <ng-container *ngIf="summaryTab === 'trade'">
+<div class="filters">
+  <label>
+    <input
+      type="radio"
+      name="tradeType"
+      value="import"
+      [(ngModel)]="tradeType">
+    <span>
+      <i class="bi bi-box-arrow-in-down"></i>
+      Import
+    </span>
+  </label>
+
+  <label>
+    <input
+      type="radio"
+      name="tradeType"
+      value="export"
+      [(ngModel)]="tradeType">
+    <span>
+      <i class="bi bi-box-arrow-up-right"></i>
+      Export
+    </span>
+  </label>
+
+</div>
+
+    <div class="summary-grid">
+
+      <div
+        class="summary-card"
+        *ngFor="let card of tradeCards"
+        [ngClass]="card.class">
+
+        <div class="icon-box">
+          <i class="bi" [ngClass]="card.icon"></i>
+        </div>
+
+        <div class="card-content">
+          <h2>{{card.value}}</h2>
+          <p>{{card.title}}</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </ng-container>
+
+  <!-- ====================================
+       LABEL
+  ==================================== -->
+
+  <ng-container *ngIf="summaryTab === 'label'">
+
+    <div class="summary-grid">
+
+      <div
+        class="summary-card"
+        *ngFor="let card of labelCards"
+        [ngClass]="card.class">
+
+        <div class="icon-box">
+          <i class="bi" [ngClass]="card.icon"></i>
+        </div>
+
+        <div class="card-content">
+          <h2>{{card.value}}</h2>
+          <p>{{card.title}}</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </ng-container>
+
+  <!-- ====================================
+       COMPANY
+  ==================================== -->
+
+  <ng-container *ngIf="summaryTab === 'company'">
+<div class="filters">
+  <label>
+    <input
+      type="radio"
+      name="companyType"
+      value="fl"
+      [(ngModel)]="companyType">
+    <span>
+      <i class="bi bi-building"></i>
+      FL
+    </span>
+  </label>
+
+  <label>
+    <input
+      type="radio"
+      name="companyType"
+      value="cl"
+      [(ngModel)]="companyType">
+    <span>
+      <i class="bi bi-buildings"></i>
+      CL
+    </span>
+  </label>
+
+</div>
+
+    <div class="summary-grid">
+
+      <div
+        class="summary-card"
+        *ngFor="let card of companyCards"
+        [ngClass]="card.class">
+
+        <div class="icon-box">
+          <i class="bi" [ngClass]="card.icon"></i>
+        </div>
+
+        <div class="card-content">
+          <h2>{{card.value}}</h2>
+          <p>{{card.title}}</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </ng-container>
+
+</div>
+
+
+  </div>
+
+  <!-- ALERTS & NOTIFICATIONS -->
+  <div class="col-lg-4">
+
+    <div class="panel notification-panel">
+
+      <div class="panel-header">
+
+        <h5>
+          <i class="bi bi-bell-fill"></i>
+          Alerts & Notifications
+        </h5>
+
+        <a href="javascript:void(0)">
+          View All
+        </a>
+
+      </div>
+
+      <div class="notification-list">
+
+        <div
+          class="notify-item"
+          *ngFor="let item of notifications">
+
+          <div
+            class="notify-icon"
+            [ngClass]="item.color">
+
+            <i
+              class="bi"
+              [ngClass]="item.icon">
+            </i>
+
+          </div>
+
+          <div class="notify-content">
+
+            <span>
+              <strong>{{ item.value }}</strong>
+              {{ item.title }}
+            </span>
+
+          </div>
+
+          <div
+            class="notify-count"
+            [ngClass]="item.color + '-bg'">
+
+            {{ item.value }}
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- =========================
+     SHOP + REVENUE
+========================= -->
+
+<div class="row mt-4">
+
+  <!-- SHOP DISTRIBUTION -->
+  <div class="col-lg-4 mb-4">
+
+    <div class="distribution-panel">
+
+      <h5>Shop Distribution</h5>
+
+      <apx-chart
+        [series]="donutSeries"
+        [chart]="donutChart"
+        [labels]="donutLabels"
+        [colors]="donutColors"
+        [legend]="donutLegend"
+        [plotOptions]="donutPlotOptions">
+      </apx-chart>
+
+      <div class="legend-section">
+
+        <div class="legend-item">
+          <span class="dot cl"></span>
+          <span class="label">CL</span>
+          <span class="value">
+            {{ donutSeries[0] || 0 }}
+            ({{ getPercentage(0) }}%)
+          </span>
+        </div>
+
+        <div class="legend-item">
+          <span class="dot fl"></span>
+          <span class="label">FL</span>
+          <span class="value">
+            {{ donutSeries[1] || 0 }}
+            ({{ getPercentage(1) }}%)
+          </span>
+        </div>
+
+        <div class="legend-item">
+          <span class="dot clc"></span>
+          <span class="label">CL Composite</span>
+          <span class="value">
+            {{ donutSeries[2] || 0 }}
+            ({{ getPercentage(2) }}%)
+          </span>
+        </div>
+
+        <div class="legend-item">
+          <span class="dot flc"></span>
+          <span class="label">FL Composite</span>
+          <span class="value">
+            {{ donutSeries[3] || 0 }}
+            ({{ getPercentage(3) }}%)
+          </span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- MONTHWISE REVENUE -->
+  <div class="col-lg-8 mb-4">
+
+    <div class="revenue-chart-panel">
+
+      <div class="chart-header">
+
+        <h5>
+          <i class="bi bi-graph-up-arrow"></i>
+          Monthwise Revenue Trend
+        </h5>
+
+        <span class="chart-subtitle">
+          Financial Year {{ selectedFinancialYear }}
+        </span>
+
+      </div>
+
+      <apx-chart
+        [series]="barSeries"
+        [chart]="barChart"
+        [stroke]="barStroke"
+        [markers]="barMarkers"
+        [dataLabels]="barDataLabels"
+        [grid]="barGrid"
+        [xaxis]="barXAxis"
+        [yaxis]="barYAxis">
+      </apx-chart>
+
+    </div>
+
+  </div>
+
+</div>
+<!-- =========================
+        QUICK ACTIONS
+========================= -->
+
+
+  <div class="col-lg-12">
+
+    <div class="panel quick-actions-panel">
+
+      <h5>Quick Actions</h5>
+
+      <div class="quick-actions-grid">
+
+        <div
+          *ngFor="let action of quickActions"
+          class="action-tile"
+          [ngClass]="action.class">
+
+          <div class="tile-icon">
+            <i class="bi" [ngClass]="action.icon"></i>
+          </div>
+
+          <div class="tile-content">
+            <h6>{{ action.title }}</h6>
+            <span>{{ action.subtitle }}</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>

@@ -1,56 +1,107 @@
-<div class="d-flex justify-content-center align-items-center vh-100 bg-dark">
+<div class="login-wrapper">
 
-  <div class="card shadow p-4 login-card">
+  <div class="login-card">
 
-    <h3 class="text-center mb-4">Admin Login</h3>
+    <!-- Logo Section -->
+    <div class="login-logo">
 
+      <div class="logo-circle">
+        <i class="bi bi-shield-lock-fill"></i>
+      </div>
+
+      <h2>Excise Admin Portal</h2>
+      <p>Secure Administrative Access</p>
+
+    </div>
+
+    <!-- Error Message -->
     <div *ngIf="errorMessage" class="alert alert-danger py-2">
       {{ errorMessage }}
     </div>
 
-    <input [(ngModel)]="username"
-           placeholder="Username"
-           class="form-control mb-3" />
-
-    <input [(ngModel)]="password"
-           type="password"
-           placeholder="Password"
-           class="form-control mb-3" />
-
-    <!-- ✅ PROFESSIONAL CAPTCHA -->
-    <div class="captcha-box mb-3">
-
-      <div class="captcha-text">
-        <span *ngFor="let char of captchaText.split(''); let i = index"
-              [ngStyle]="captchaStyles[i]">
-          {{ char }}
-        </span>
-      </div>
-
-      <!-- ✅ FIXED BUTTON -->
-<!-- <span class="captcha-refresh-text" (click)="generateCaptcha()">
-  Refresh
-</span> -->
-<button type="button"
-        class="captcha-refresh-btn"
-        (click)="generateCaptcha()"
-        title="Reload captcha">
-  <i class="fas fa-rotate-right"></i>
-</button>
+    <!-- Username -->
+    <div class="form-group">
+      <label>Username</label>
+      <input
+        [(ngModel)]="username"
+        type="text"
+        class="form-control"
+        placeholder="Enter Username">
     </div>
 
-    <input [(ngModel)]="userCaptcha"
-           placeholder="Enter captcha"
-           class="form-control mb-3" />
+    <!-- Password -->
+    <div class="form-group">
+      <label>Password</label>
+      <input
+        [(ngModel)]="password"
+        type="password"
+        class="form-control"
+        placeholder="Enter Password">
+    </div>
 
-    <button (click)="login()"
-            [disabled]="loading"
-            class="btn btn-primary w-100">
+    <!-- Captcha -->
+    <div class="captcha-box">
 
-      <span *ngIf="!loading">Login</span>
-      <span *ngIf="loading">Please wait...</span>
+      <div class="captcha-text">
+
+        <span
+          *ngFor="let char of captchaText.split(''); let i = index"
+          [ngStyle]="captchaStyles[i]">
+
+          {{ char }}
+
+        </span>
+
+      </div>
+
+      <button
+        type="button"
+        class="captcha-refresh-btn"
+        (click)="generateCaptcha()"
+        title="Refresh Captcha">
+
+        <i class="bi bi-arrow-clockwise"></i>
+
+      </button>
+
+    </div>
+
+    <!-- Enter Captcha -->
+    <div class="form-group mt-3">
+
+      <label>Captcha</label>
+
+      <input
+        [(ngModel)]="userCaptcha"
+        class="form-control"
+        placeholder="Enter Captcha">
+
+    </div>
+
+    <!-- Login Button -->
+    <button
+      class="btn btn-login w-100"
+      (click)="login()"
+      [disabled]="loading">
+
+      <span *ngIf="!loading">
+        <i class="bi bi-box-arrow-in-right me-2"></i>
+        Login
+      </span>
+
+      <span *ngIf="loading">
+        Please wait...
+      </span>
 
     </button>
+
+    <!-- Footer -->
+    <div class="login-footer">
+
+      <i class="bi bi-shield-check"></i>
+      Secure Access • Excise Management System
+
+    </div>
 
   </div>
 

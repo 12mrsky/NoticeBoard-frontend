@@ -30,10 +30,13 @@ export class AdminLayoutComponent {
     private router: Router
   ) {}
 
-  toggleSidebar() {
-    this.sidebarCollapsed = !this.sidebarCollapsed;
-  }
+toggleSidebar() {
+  this.sidebarCollapsed = !this.sidebarCollapsed;
 
+  setTimeout(() => {
+    window.dispatchEvent(new Event('resize'));
+  }, 400);
+}
   logout(): void {
     this.auth.logout();
     this.router.navigate(['/login']);

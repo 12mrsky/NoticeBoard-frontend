@@ -1,258 +1,403 @@
-/* ================= GLOBAL ================= */
+/* ==========================================
+PAGE
+========================================== */
+
+.container{
+max-width:1400px;
+}
+
+/* ==========================================
+PAGE HEADER
+========================================== */
+
+h2{
+font-size:32px;
+font-weight:700;
+color:#fff;
+margin-bottom:20px;
+}
+
+/* ==========================================
+FORM CARD
+========================================== */
+
+#editSection{
+background:linear-gradient(
+135deg,
+#1e293b,
+#0f172a
+) !important;
+
+border:none;
+border-radius:20px !important;
+
+box-shadow:
+0 10px 30px rgba(0,0,0,.25);
+}
+
+/* ==========================================
+LABELS
+========================================== */
+
+.form-label{
+font-size:24px;
+font-weight:600;
+color:#e2e8f0;
+margin-bottom:8px;
+}
+
+/* ==========================================
+INPUTS
+========================================== */
+
+.form-control{
+height:48px;
+border-radius:12px;
+border:1px solid #334155;
+background:#1e293b;
+color:#fff;
+}
+
+textarea.form-control{
+height:auto;
+min-height:120px;
+resize:none;
+}
+
+.form-control:focus{
+background:#1e293b;
+color:#fff;
+border-color:#f59e0b;
+box-shadow:0 0 0 .2rem rgba(245,158,11,.20);
+}
+
+.form-control::placeholder{
+color:#94a3b8;
+}
+
+/* ==========================================
+DATE PICKER
+========================================== */
+
+.btn1{
+width:55px;
+border:none;
+border-radius:12px 0 0 12px;
+font-size:18px;
+font-weight:700;
+}
+
+/* ==========================================
+FILE INPUT
+========================================== */
+
+input[type=file]{
+padding:10px;
+}
+
+/* ==========================================
+PREVIEW CARD
+========================================== */
+
+.card.bg-black{
+border-radius:16px;
+border:1px solid #374151 !important;
+background:#111827 !important;
+}
+
+/* ==========================================
+BUTTONS
+========================================== */
+
+.btn{
+border-radius:10px;
+font-weight:600;
+}
+
+.btn-success{
+background:#10b981;
+border:none;
+}
+
+.btn-warning{
+color:#000;
+}
+
+.btn-primary{
+background:#2563eb;
+border:none;
+}
+
+.btn-danger{
+border:none;
+}
+
+.btn:hover{
+transform:translateY(-1px);
+}
+
+/* ==========================================
+XML VIEWER
+========================================== */
+
+pre{
+margin:0;
+font-size:13px;
+}
+
+/* ==========================================
+PAGE BACKGROUND
+========================================== */
 
 body {
   background: #0f172a;
   font-family: 'Segoe UI', sans-serif;
-  color: #e2e8f0;
   font-size: 13px;
 }
 
-/* Smooth transitions */
-* {
-  transition: all 0.2s ease-in-out;
+/* ==========================================
+NOTICE SECTION
+========================================== */
+
+.notice-section{
+margin-top:30px;
 }
 
-/* ================= CONTAINER ================= */
+/* ==========================================
+TOOLBAR
+========================================== */
 
-.container-box {
-  background: #1e293b;
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+.notice-toolbar{
+background:linear-gradient(
+135deg,
+#1e293b,
+#0f172a
+);
+
+padding:22px;
+border-radius:20px;
+
+border:1px solid rgba(255,255,255,.08);
+
+box-shadow:
+0 10px 25px rgba(0,0,0,.20);
+
+margin-bottom:25px;
 }
 
-/* ================= CARD ================= */
+/* ==========================================
+YEAR FILTER
+========================================== */
 
-.card-custom {
-  background: #1e293b;
-  border: 1px solid #334155;
-  border-radius: 12px;
-  padding: 16px;
+.year-filter{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
 }
 
-.card-custom:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+.year-btn{
+  min-width:90px;
+  height:42px;
+  border:none;
+  border-radius:12px;
+  background:#334155;
+  color:#fff;
+  font-size:14px;
+  font-weight:600;
+  transition:.25s;
 }
 
-/* ================= FORM ================= */
-
-.form-control,
-textarea,
-input {
-  background-color: #020617 !important;
-  border: 1px solid #334155 !important;
-  color: #ffffff !important;
+.year-btn:hover{
+  background:#475569;
+  transform:translateY(-2px);
 }
 
-.form-control:focus,
-textarea:focus,
-input:focus {
-  border-color: #3b82f6 !important;
-  box-shadow: none !important;
+.year-btn.active{
+  background:#f59e0b !important;
+  color:#000 !important;
+  font-weight:700;
+  box-shadow:0 0 0 3px rgba(245,158,11,.25);
 }
 
-/* Placeholder */
-textarea::placeholder,
-input::placeholder {
-  color: #cbd5e1 !important;
-  opacity: 1;
+/* ==========================================
+NOTICE HEADER
+========================================== */
+
+.notice-header{
+margin-bottom:20px;
 }
 
-/* ================= BUTTON ================= */
-
-.btn {
-  border-radius: 8px;
-  font-weight: 500;
+.notice-header h4{
+font-weight:700;
 }
 
-/* Primary */
-.btn-primary {
-  background: #3b82f6;
-  border: none;
+/* ==========================================
+NOTICE CARD
+========================================== */
+
+.notice-card{
+
+background:#1e293b;
+color:#e2e8f0;
+
+border-radius:18px;
+
+padding:20px;
+
+margin-bottom:16px;
+
+border-left:5px solid #ffc107;
+
+box-shadow:
+0 4px 14px rgba(15,23,42,.08);
+
+transition:.25s ease;
 }
 
-.btn-primary:hover {
-  background: #2563eb;
+.notice-card:hover{
+
+transform:translateY(-3px);
+
+box-shadow:
+0 10px 24px rgba(15,23,42,.15);
 }
 
-/* Success */
-.btn-success {
-  background: #22c55e;
-  border: none;
+.notice-body{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+gap:20px;
 }
 
-.btn-success:hover {
-  background: #16a34a;
+.notice-content{
+flex:1;
 }
 
-/* Danger */
-.btn-danger {
-  background: #ef4444;
-  border: none;
+.notice-title{
+
+margin:0 0 10px;
+
+color:#f6f7f8;
+
+font-size:16px;
+
+font-weight:600;
+
+cursor:pointer;
+
+transition:.2s;
 }
 
-.btn-danger:hover {
-  background: #dc2626;
+.notice-title:hover
+
+.notice-meta{
+
+color:#64748b;
+
+font-size:13px;
+
+display:flex;
+
+align-items:center;
+
+gap:6px;
 }
 
-/* ================= HEADER ================= */
-
-.page-title {
-  font-size: 15px;
-  font-weight: 600;
-  margin-bottom: 20px;
+.notice-meta i{
+color:#f59e0b;
 }
 
-/* ================= LIST ================= */
+/* ==========================================
+ACTIONS
+========================================== */
 
-.list-item {
-  background: #1e293b;
-  border: 1px solid #334155;
-  padding: 15px;
-  border-radius: 10px;
-  margin-bottom: 10px;
+.notice-actions{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
 }
 
-/* ================= PDF PREVIEW ================= */
-
-.pdf-preview {
-  border: 1px solid #334155;
-  border-radius: 10px;
-  overflow: hidden;
+.notice-actions .btn{
+min-width:90px;
 }
 
-/* ================= XML VIEW ================= */
+/* ==========================================
+PAGINATION
+========================================== */
 
-.xml-box {
-  background: #020617;
-  border: 1px solid #334155;
-  border-radius: 10px;
-  padding: 15px;
-  max-height: 300px;
-  overflow: auto;
-  font-size: 13px;
-  color: #22c55e;
+.pagination{
+gap:6px;
 }
 
-/* ================= LOADER ================= */
+.pagination .page-link{
 
-.loader {
-  border: 4px solid #1e293b;
-  border-top: 4px solid #3b82f6;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  animation: spin 1s linear infinite;
-  margin: auto;
+border:none;
+
+border-radius:10px;
+
+background:#1e293b;
+
+color:#fff;
+
+min-width:44px;
+
+text-align:center;
+
+font-weight:600;
 }
 
-@keyframes spin {
-  100% {
-    transform: rotate(360deg);
-  }
+.pagination .page-link:hover{
+
+background:#ffc107;
+
+color:#000;
 }
 
-/* ================= SCROLLBAR ================= */
+.pagination .page-item.active .page-link{
 
-::-webkit-scrollbar {
-  width: 6px;
+background:#ffc107;
+
+color:#000;
+
+font-weight:700;
 }
 
-::-webkit-scrollbar-thumb {
-  background: #334155;
-  border-radius: 10px;
+.pagination .page-item.disabled .page-link{
+
+opacity:.4;
+
+pointer-events:none;
 }
 
-/* ================= VIEW LINK ================= */
+/* ==========================================
+RESPONSIVE
+========================================== */
 
-.view-link {
-  cursor: pointer;
-  color: #ffc107;
-  font-size: 13px;
-  white-space: nowrap;
+@media(max-width:768px){
+
+.notice-body{
+flex-direction:column;
+align-items:flex-start;
 }
 
-.view-link:hover {
-  text-decoration: underline;
-  color: #ffca2c;
+.notice-actions{
+width:100%;
 }
 
-/* ================= AUTH (LOGIN / REGISTER) ================= */
-
-.auth-wrapper {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.notice-actions .btn{
+flex:1;
 }
 
-.auth-card {
-  width: 100%;
-  max-width: 420px;
-  background: #1e293b;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+.year-btn{
+flex:1;
 }
 
-.auth-title {
-  font-weight: 600;
-  margin-bottom: 20px;
+h2{
+font-size:26px;
 }
 
-.custom-input {
-  background: #020617 !important;
-  border: 1px solid #334155 !important;
-  color: #fff !important;
 }
-
-.custom-input::placeholder {
-  color: #94a3b8;
-}
-
-.custom-btn {
-  font-weight: 500;
-  border-radius: 8px;
-}
-
-.auth-link {
-  color: #3b82f6;
-  text-decoration: none;
-}
-
-.auth-link:hover {
-  text-decoration: underline;
-}
-/* SMALLER TEXT */
-h5 {
-  font-size: 15px;
-}
-
-h2 {
-  font-size: 22px;
-}
-
-small {
-  font-size: 12px;
-}
-
-/* SMALLER BUTTONS */
-.btn {
-  font-size: 13px !important;
-  padding: 5px 10px !important;
-}
-
-/* SMALLER INPUTS */
-.form-control,
-textarea,
-input {
-  font-size: 12px !important;
-}
-
-/* VIEW LINK */
-.view-link {
-  font-size: 10px;
-}
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

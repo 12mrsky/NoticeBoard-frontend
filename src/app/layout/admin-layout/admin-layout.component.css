@@ -1,91 +1,179 @@
-/* Sidebar */
+/* =========================
+   SIDEBAR
+========================= */
+
 .sidebar{
-  width:250px;
+  width:220px; /* 250 se chota */
   height:100vh;
-
-  position:fixed;
-  top:0;
-  left:0;
-
-  z-index:1000;
-
-  background:#111827;
-  color:#ffffff;
-
+  background:#081a38;
+  overflow:hidden;
+  transition:.3s ease;
   display:flex;
   flex-direction:column;
+  position:fixed;
+  left:0;
+  top:0;
+
+  border-right:1px solid rgba(255,255,255,.08);
 }
 
-/* Header */
+.sidebar.collapsed{
+  width:0;
+}
+
+/* =========================
+   HEADER
+========================= */
+
 .sidebar-header{
+  height:70px;
+  padding:0 15px;
+
   display:flex;
   align-items:center;
-  gap:15px;
+  gap:12px;
 
-  padding:15px;
-
-  border-bottom:1px solid rgba(255,255,255,.15);
+  border-bottom:1px solid rgba(255,255,255,.08);
 }
 
 .portal-title{
-  font-size:30px;
-  font-weight:600;
-  color:white;
+  color:#fff;
+  font-size:15px;
+  font-weight:700;
+  margin:0;
+  white-space:nowrap;
 }
 
+.portal-title2{
+  display:none;
+}
 
-/* Links */
+/* =========================
+   MENU
+========================= */
+
+.list-group{
+  padding:12px;
+  overflow-y:auto;
+  flex:1;
+}
+
+/* =========================
+   MENU ITEMS
+========================= */
+
 .sidebar-link{
-  background:#111827 !important;
-  color:white !important;
+  background:transparent !important;
   border:none !important;
 
-  transition:.3s;
+  color:#cbd5e1 !important;
+
+  display:flex !important;
+  align-items:center;
+
+  gap:12px;
+
+  height:44px;
+
+  padding:0 14px !important;
+
+  margin-bottom:6px;
+
+  border-radius:10px !important;
+
+  font-size:14px;
+  font-weight:500;
+
+  transition:.25s ease;
+}
+
+.sidebar-link i{
+  font-size:16px;
+  width:18px;
 }
 
 .sidebar-link:hover{
-  background:#f59e0b !important;
-  color:black !important;
+  background:rgba(37,99,235,.18) !important;
+  color:#fff !important;
+
+  transform:translateX(3px);
 }
 
 .sidebar-link.active{
-  background:#f59e0b !important;
-  color:black !important;
+  background:rgba(59,130,246,.25) !important;
+  color:#fff !important;
+
+  border-left:none;
+
+  box-shadow:
+    inset 3px 0 0 #60a5fa;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.sidebar-footer{
+  padding:15px;
+  border-top:1px solid rgba(255,255,255,.08);
+}
+
+.sidebar-footer .btn-danger{
+  height:42px;
+  border-radius:10px;
+  font-size:14px;
   font-weight:600;
 }
 
-/* Footer */
-.sidebar-footer{
-  padding:15px;
-  border-top:1px solid rgba(255,255,255,.15);
+/* =========================
+   CONTENT
+========================= */
+
+.content-area{
+  width:100%;
+  min-height:100vh;
+
+  background:#07152f;
+
+  margin-left:220px;
+  transition:margin-left .3s ease;
 }
 
-/* Content */
-.content-area{
-  flex:1;
-  transition:.3s ease;
+.content-area.expanded{
+  margin-left:0;
 }
 
 .content-wrapper{
   padding:20px;
+  padding-top:50px;
 }
 
-/* Toggle Button */
+/* =========================
+   TOGGLE BUTTON
+========================= */
+
 .toggle-btn{
-  position: fixed;
-  top: 15px;
-  left: 15px;
-  z-index: 2000;
+  position:fixed;
+  top:15px;
+  left:15px;
 
-  width: 45px;
-  height: 45px;
+  z-index:2000;
+
+  width:42px;
+  height:42px;
+
+  border-radius:10px;
 }
 
-/* Dark Theme */
-body{
-  background:#061433;
+/* =========================
+   SCROLLBAR
+========================= */
+
+.list-group::-webkit-scrollbar{
+  width:4px;
 }
-.content-wrapper{
-  padding: 20px;
-  padding-top: 80px; /* important */
+
+.list-group::-webkit-scrollbar-thumb{
+  background:#31517f;
+  border-radius:20px;
 }
