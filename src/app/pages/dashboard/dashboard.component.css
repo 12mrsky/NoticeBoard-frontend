@@ -14,25 +14,29 @@ TOP HEADER
 ========================= */
 
 .dashboard-topbar{
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:20px;
-margin-bottom:30px;
-flex-wrap:wrap;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  margin-bottom:24px;
 }
 
 .page-title h2{
-margin:0;
-font-size:45px;
-font-weight:700;
+  margin-top:30px;
+
+  color:#fff;
+  font-size:42px;
+  font-weight:700;
+
+  line-height:1.1;
 }
 
 .page-title p{
-margin:5px 0 0;
-color:#94a3b8;
-}
+  margin-top:8px;
 
+  color:#94a3b8;
+  font-size:15px;
+}
 .topbar-right{
 display:flex;
 align-items:center;
@@ -850,6 +854,14 @@ width:100%;
   gap:12px;
   margin-top:10px;
 }
+.dot{
+  width:12px;
+  height:12px;
+  min-width:12px;
+  border-radius:50%;
+  display:inline-block;
+  flex-shrink:0;
+}
 
 .legend-item{
   display:flex;
@@ -857,26 +869,24 @@ width:100%;
   gap:10px;
 }
 
-.dot{
-  width:10px;
-  height:10px;
-  border-radius:50%;
-}
-
-.cl{
+.dot.cl{
   background:#22c55e;
 }
 
-.fl{
+.dot.fl{
   background:#ef4444;
 }
 
-.clc{
+.dot.clc{
   background:#f59e0b;
 }
 
-.flc{
+.dot.flc{
   background:#3b82f6;
+}
+
+.dot.flp{
+  background:#0004ee;
 }
 
 .label{

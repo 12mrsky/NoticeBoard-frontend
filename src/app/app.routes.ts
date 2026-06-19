@@ -8,7 +8,11 @@ import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.compone
 
 import { authGuard } from './core/guards/auth.guard';
 
+import { UnderDevelopmentComponent }
+from './pages/under-development/under-development.component';
+
 export const routes: Routes = [
+  
 
   {
     path: 'login',
@@ -30,11 +34,17 @@ export const routes: Routes = [
         component: NoticeComponent
       },
       {
+        path: 'under-development',
+        component: UnderDevelopmentComponent
+      },
+      {
         path: '',
         redirectTo: 'dashboard',
         pathMatch: 'full'
-      }
+      },
+
     ]
+
   },
 
   {

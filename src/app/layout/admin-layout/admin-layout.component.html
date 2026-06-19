@@ -1,162 +1,155 @@
-<div class="d-flex">
+<div class="admin-layout d-flex">
 
-  <!-- Sidebar -->
-<div
-  class="sidebar"
-  [class.collapsed]="sidebarCollapsed">
-    <!-- Header -->
-   <div class="sidebar-header">
+  <!-- SIDEBAR -->
+  <aside
+    class="sidebar"
+    [class.collapsed]="sidebarCollapsed">
 
-  <button
-    class="menu-btn"
-    (click)="toggleSidebar()">
+    <!-- Sidebar Header -->
+    <div class="sidebar-header">
 
-    <i class="bi bi-list"></i>
+      <button
+        class="menu-btn"
+        (click)="toggleSidebar()">
+        <i class="bi bi-list"></i>
+      </button>
 
-  </button>
+      <div class="brand">
 
-  <div class="brand">
+        <div class="brand-logo">
+          <i class="bi bi-shield-check"></i>
+        </div>
 
-    <div class="brand-logo">
-      <i class="bi bi-shield-check"></i>
-    </div>
-
-    <div class="brand-text">
-      <h4>Excise Portal</h4>
-      <small>Administration</small>
-    </div>
-
-  </div>
-
+   <div class="brand-text">
+  <h4>Excise Portal</h4>
+  <small>Administration</small>
 </div>
 
-<!-- Menu -->
-<div class="list-group list-group-flush flex-grow-1">
+      </div>
 
- <a
-  routerLink="/admin/dashboard"
-  routerLinkActive="active"
-  class="list-group-item list-group-item-action sidebar-link">
-  <i class="bi bi-speedometer2"></i>
-  <span>Dashboard</span>
-</a>
-  <a
-    routerLink="/admin/notice"
-    routerLinkActive="active"
-    class="list-group-item list-group-item-action sidebar-link">
-<i class="bi bi-megaphone-fill"></i>
-<span>Notice Management</span>  </a>
+    </div>
 
-  <a
-    routerLink="/admin/challan"
-    class="list-group-item list-group-item-action sidebar-link">
-<i class="bi bi-receipt"></i> Challan
-  </a>
+    <!-- Navigation -->
+    <div class="list-group list-group-flush flex-grow-1">
 
-  <a
-    routerLink="/admin/cm"
-    class="list-group-item list-group-item-action sidebar-link">
-    <i class="bi bi-person-badge"></i> CM
+      <a routerLink="/admin/dashboard"
+         routerLinkActive="active"
+         class="sidebar-link list-group-item list-group-item-action">
+        <i class="bi bi-speedometer2"></i>
+        <span>Dashboard</span>
+      </a>
 
-  </a>
+      <a routerLink="/admin/notice"
+         routerLinkActive="active"
+         class="sidebar-link list-group-item list-group-item-action">
+        <i class="bi bi-megaphone-fill"></i>
+        <span>Notice Management</span>
+      </a>
 
-  <a
-    routerLink="/admin/company"
-    class="list-group-item list-group-item-action sidebar-link">
-<i class="bi bi-building"></i> Company
-  </a>
+      <a routerLink="/admin/under-development"
+         class="sidebar-link list-group-item list-group-item-action">
+        <i class="bi bi-receipt"></i>
+        <span>Challan</span>
+      </a>
 
-  <a
-    routerLink="/admin/crime-investigation"
-    class="list-group-item list-group-item-action sidebar-link">
-<i class="bi bi-shield-exclamation"></i> Crime Investigation
-  </a>
+      <a routerLink="/admin/under-development"
+         class="sidebar-link list-group-item list-group-item-action">
+        <i class="bi bi-person-badge"></i>
+        <span>CM</span>
+      </a>
 
-  <a
-    routerLink="/admin/excise-reports"
-    class="list-group-item list-group-item-action sidebar-link">
-<i class="bi bi-cup-hot"></i> Excise
-  </a>
+      <a routerLink="/admin/under-development"
+         class="sidebar-link list-group-item list-group-item-action">
+        <i class="bi bi-building"></i>
+        <span>Company</span>
+      </a>
 
-  <a
-    routerLink="/admin/import-export"
-    class="list-group-item list-group-item-action sidebar-link">
-    <i class="bi bi-arrow-left-right"></i> Import / Export
+      <a routerLink="/admin/under-development"
+         class="sidebar-link list-group-item list-group-item-action">
+        <i class="bi bi-shield-exclamation"></i>
+        <span>Crime Investigation</span>
+      </a>
 
-  </a>
+      <a routerLink="/admin/under-development"
+         class="sidebar-link list-group-item list-group-item-action">
+        <i class="bi bi-cup-hot"></i>
+        <span>Excise</span>
+      </a>
 
-  <a
-    routerLink="/admin/label-registration"
-    class="list-group-item list-group-item-action sidebar-link">
-    <i class="bi bi-patch-check"></i> Label Registration
+      <a routerLink="/admin/under-development"
+         class="sidebar-link list-group-item list-group-item-action">
+        <i class="bi bi-arrow-left-right"></i>
+        <span>Import / Export</span>
+      </a>
 
-  </a>
+      <a routerLink="/admin/under-development"
+         class="sidebar-link list-group-item list-group-item-action">
+        <i class="bi bi-patch-check"></i>
+        <span>Label Registration</span>
+      </a>
 
-  <a
-    routerLink="/admin/license"
-    class="list-group-item list-group-item-action sidebar-link">
-    <i class="bi bi-award"></i> License
-  </a>
+      <a routerLink="/admin/under-development"
+         class="sidebar-link list-group-item list-group-item-action">
+        <i class="bi bi-award"></i>
+        <span>License</span>
+      </a>
 
-  <a
-    routerLink="/admin/master"
-    class="list-group-item list-group-item-action sidebar-link">
-    <i class="bi bi-database"></i> Master
-  </a>
+      <a routerLink="/admin/under-development"
+         class="sidebar-link list-group-item list-group-item-action">
+        <i class="bi bi-database"></i>
+        <span>Master</span>
+      </a>
 
-  <a
-    routerLink="/admin/permit"
-    class="list-group-item list-group-item-action sidebar-link">
-    <i class="bi bi-journal-text"></i> Patrak
+      <a routerLink="/admin/under-development"
+         class="sidebar-link list-group-item list-group-item-action">
+        <i class="bi bi-journal-text"></i>
+        <span>Patrak</span>
+      </a>
 
-  </a>
+      <a routerLink="/admin/under-development"
+         class="sidebar-link list-group-item list-group-item-action">
+        <i class="bi bi-house-check"></i>
+        <span>Property Detail</span>
+      </a>
 
-  <a
-    routerLink="/admin/property-detail"
-    class="list-group-item list-group-item-action sidebar-link">
-    <i class="bi bi-house-check"></i> Property Detail
+      <a routerLink="/admin/under-development"
+         class="sidebar-link list-group-item list-group-item-action">
+        <i class="bi bi-people-fill"></i>
+        <span>User Management</span>
+      </a>
 
-  </a>
+    </div>
 
-  <a
-    routerLink="/admin/user-management"
-    class="list-group-item list-group-item-action sidebar-link">
-    <i class="bi bi-people-fill"></i> User Management
-  </a>
-
-</div>
-
-    <!-- Logout -->
+    <!-- Footer -->
     <div class="sidebar-footer">
 
       <button
-        class="btn btn-danger w-100"
+        class="btn btn-danger logout-btn w-100"
         (click)="logout()">
+        <i class="bi bi-box-arrow-right"></i>
         Logout
       </button>
 
     </div>
 
-  </div>
+  </aside>
 
-  <!-- Content -->
-  <div
-  class="content-area"
-  [class.expanded]="sidebarCollapsed">
-    <!-- Toggle Button -->
+  <!-- CONTENT -->
+  <main
+    class="content-area"
+    [class.expanded]="sidebarCollapsed">
+
     <button
       *ngIf="sidebarCollapsed"
-      class="btn btn-warning toggle-btn"
+      class="toggle-btn"
       (click)="toggleSidebar()">
-      ☰
+      <i class="bi bi-list"></i>
     </button>
 
     <div class="content-wrapper">
-
       <router-outlet></router-outlet>
-
     </div>
 
-  </div>
+  </main>
 
 </div>

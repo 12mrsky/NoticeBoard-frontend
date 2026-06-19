@@ -86,14 +86,18 @@ donutLabels = [
   'CL',
   'FL',
   'CL Composite',
-  'FL Composite'
+  'FL Composite',
+  'FL Premium'
+
 ];
 
 donutColors: string[] = [
 '#22c55e',
 '#ef4444',
 '#f59e0b',
-'#3b82f6'
+'#3b82f6',
+'#0004ee'
+
 ];
 
 donutChart: ApexChart = {
@@ -137,7 +141,7 @@ height: 240
 getPercentage(index: number): string {
 
   const total = this.donutSeries.reduce(
-    (a, b) => a + b,
+    (sum, value) => sum + value,
     0
   );
 
@@ -147,7 +151,7 @@ getPercentage(index: number): string {
 
   return (
     (this.donutSeries[index] / total) * 100
-  ).toFixed(2);
+  ).toFixed(1);
 }
 
 // =========================
@@ -321,30 +325,33 @@ monthRevenue:
   this.shopData = res.shops;
   this.revenueData = res.revenue;
   this.monthRevenueData = res.monthRevenue;
+// =========================
+// Shop Distribution Donut
+// =========================
 
-  // =========================
-  // Shop Distribution Donut
-  // =========================
+this.donutSeries = [
 
-  this.donutSeries = [
+  this.shopData.find(
+    (x: any) => x.districtName === 'CL Shop Total'
+  )?.shopCount || 0,
 
-    this.shopData.find(
-      (x: any) => x.districtName === 'CL Shop Total'
-    )?.shopCount || 0,
+  this.shopData.find(
+    (x: any) => x.districtName === 'Foreign Liquor Shop Total'
+  )?.shopCount || 0,
 
-    this.shopData.find(
-      (x: any) => x.districtName === 'Foreign Liquor Shop Total'
-    )?.shopCount || 0,
+  this.shopData.find(
+    (x: any) => x.districtName === 'CL Composite Total'
+  )?.shopCount || 0,
 
-    this.shopData.find(
-      (x: any) => x.districtName === 'CL Composite Total'
-    )?.shopCount || 0,
+  this.shopData.find(
+    (x: any) => x.districtName === 'FL Composite Total'
+  )?.shopCount || 0,
 
-    this.shopData.find(
-      (x: any) => x.districtName === 'FL Composite Total'
-    )?.shopCount || 0
+  this.shopData.find(
+    (x: any) => x.districtName === 'Foreign Liquor Premium Total'
+  )?.shopCount || 0
 
-  ];
+];
 
   // =========================
   // Monthwise Revenue Chart

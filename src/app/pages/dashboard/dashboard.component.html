@@ -581,41 +581,50 @@
 
       <div class="legend-section">
 
-        <div class="legend-item">
-          <span class="dot cl"></span>
-          <span class="label">CL</span>
-          <span class="value">
-            {{ donutSeries[0] || 0 }}
-            ({{ getPercentage(0) }}%)
-          </span>
-        </div>
+  <div class="legend-item">
+    <span class="dot cl"></span>
+    <span class="label">CL</span>
+    <span class="value">
+      {{ donutSeries[0] || 0 }}
+      ({{ getPercentage(0) }}%)
+    </span>
+  </div>
 
-        <div class="legend-item">
-          <span class="dot fl"></span>
-          <span class="label">FL</span>
-          <span class="value">
-            {{ donutSeries[1] || 0 }}
-            ({{ getPercentage(1) }}%)
-          </span>
-        </div>
+  <div class="legend-item">
+    <span class="dot fl"></span>
+    <span class="label">FL</span>
+    <span class="value">
+      {{ donutSeries[1] || 0 }}
+      ({{ getPercentage(1) }}%)
+    </span>
+  </div>
 
-        <div class="legend-item">
-          <span class="dot clc"></span>
-          <span class="label">CL Composite</span>
-          <span class="value">
-            {{ donutSeries[2] || 0 }}
-            ({{ getPercentage(2) }}%)
-          </span>
-        </div>
+  <div class="legend-item">
+    <span class="dot clc"></span>
+    <span class="label">CL Composite</span>
+    <span class="value">
+      {{ donutSeries[2] || 0 }}
+      ({{ getPercentage(2) }}%)
+    </span>
+  </div>
 
-        <div class="legend-item">
-          <span class="dot flc"></span>
-          <span class="label">FL Composite</span>
-          <span class="value">
-            {{ donutSeries[3] || 0 }}
-            ({{ getPercentage(3) }}%)
-          </span>
-        </div>
+  <div class="legend-item">
+    <span class="dot flc"></span>
+    <span class="label">FL Composite</span>
+    <span class="value">
+      {{ donutSeries[3] || 0 }}
+      ({{ getPercentage(3) }}%)
+    </span>
+  </div>
+
+  <div class="legend-item">
+    <span class="dot flp"></span>
+    <span class="label">FL Premium</span>
+    <span class="value">
+      {{ donutSeries[4] || 0 }}
+      ({{ getPercentage(4) }}%)
+    </span>
+  </div>
 
       </div>
 
@@ -635,9 +644,9 @@
           Monthwise Revenue Trend
         </h5>
 
-        <span class="chart-subtitle">
+        <!-- <span class="chart-subtitle">
           Financial Year {{ selectedFinancialYear }}
-        </span>
+        </span> -->
 
       </div>
 
