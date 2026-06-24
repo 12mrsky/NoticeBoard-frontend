@@ -38,12 +38,12 @@ styleUrls: ['./dashboard.component.css']
 export class DashboardComponent implements OnInit {
 
 dashboard?: DashboardDto;
-  licenseData: any[] = [];
+licenseData: any[] = [];
 companyData: any[] = [];
 labelData: any[] = [];
 tradeData: any[] = [];
 shopData: any[] = [];
-revenueData: any[] = [];
+revenueData: any = null;
 monthRevenueData: any[] = [];
 
 
@@ -67,7 +67,7 @@ generateFinancialYears(): string[] {
   const currentYear = new Date().getFullYear();
   const years: string[] = [];
 
-  for (let i = currentYear - 3; i <= currentYear; i++) {
+  for (let i = currentYear - 2; i <= currentYear; i++) {
     years.push(`${i}-${i + 1}`);
   }
 
@@ -237,7 +237,7 @@ this.dashboardService
     .subscribe({
 
 next: (res: any) => {
-        // console.log('Dashboard Response:', res);
+// console.log('Dashboard Response:', res);
 // console.log('Month Revenue Data');
 // console.table(this.monthRevenueData);
         this.dashboard = res;
@@ -325,6 +325,22 @@ monthRevenue:
   this.shopData = res.shops;
   this.revenueData = res.revenue;
   this.monthRevenueData = res.monthRevenue;
+//   console.log('================================');
+// console.log('Selected FY:', this.selectedFinancialYear);
+
+// console.log('Revenue Data');
+// console.log(this.revenueData);
+
+// console.log('Month Revenue Data');
+// console.table(this.monthRevenueData);
+
+// console.log(
+//   'Last Month Record:',
+//   this.monthRevenueData[
+//     this.monthRevenueData.length - 1
+//   ]
+// );
+// console.log('================================');
 // =========================
 // Shop Distribution Donut
 // =========================
@@ -401,11 +417,22 @@ this.loadAllDashboardData();
 today = new Date();
 
 get totalRevenue(): number {
-  return this.revenueData?.[0]?.totalRevenueCr ?? 0;
+  return this.revenueData?.totalRevenueCr ?? 0;
 }
 
 get targetRevenue(): number {
-  return this.revenueData?.[0]?.targetRevenueCr ?? 3000;
+
+  const targets: { [key: string]: number } = {
+
+    '2024-2025': 10000,
+
+    '2025-2026': 12000,
+
+    '2026-2027': 13000,
+
+  };
+
+  return targets[this.selectedFinancialYear] || 13000;
 }
 
 get achievementPercent(): number {
@@ -417,16 +444,11 @@ get achievementPercent(): number {
 }
 
 get currentMonthRevenue(): number {
+  return this.revenueData?.currentMonthRevenueCr ?? 0;
+}
 
-  if (!this.monthRevenueData?.length) {
-    return 0;
-  }
-
-  return Number(
-    this.monthRevenueData[
-      this.monthRevenueData.length - 1
-    ]?.revenueCr || 0
-  );
+get todayCollection(): number {
+  return this.revenueData?.currentDayRevenueCr ?? 0;
 }
 
 get growthPercent(): number {
@@ -446,15 +468,73 @@ get growthPercent(): number {
     (((current - previous) / previous) * 100).toFixed(2)
   );
 }
+
+
 get currentMonthName(): string {
 
-  if (!this.monthRevenueData?.length) {
-    return '';
-  }
+  const today = new Date();
 
-  return this.monthRevenueData[
-    this.monthRevenueData.length - 1
-  ]?.monthName || '';
+  const monthShort = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec'
+  ];
+
+  const month = monthShort[today.getMonth()];
+
+  const fyStartYear = Number(
+    this.selectedFinancialYear.split('-')[0]
+  );
+
+  const fyEndYear = Number(
+    this.selectedFinancialYear.split('-')[1]
+  );
+
+  const targetYear =
+    today.getMonth() >= 3
+      ? fyStartYear
+      : fyEndYear;
+
+  return `${month}-${targetYear}`;
+}
+
+
+get todayCollectionDate(): string {
+
+  const today = new Date();
+
+  const day = today.getDate();
+
+  const monthShort = [
+    'Jan','Feb','Mar','Apr','May','Jun',
+    'Jul','Aug','Sep','Oct','Nov','Dec'
+  ];
+
+  const month = monthShort[today.getMonth()];
+
+  const fyStartYear = Number(
+    this.selectedFinancialYear.split('-')[0]
+  );
+
+  const fyEndYear = Number(
+    this.selectedFinancialYear.split('-')[1]
+  );
+
+  const year =
+    today.getMonth() >= 3
+      ? fyStartYear
+      : fyEndYear;
+
+  return `${day} ${month} ${year}`;
 }
 // =========================
 // License Cards
@@ -478,7 +558,7 @@ get licenseCards() {
       );
       break;
 
-    case 'military':
+    case 'Oneday':
       data = this.licenseData.find(
         x => x.licenseCategory === 'OneDayLicIssue'
       );

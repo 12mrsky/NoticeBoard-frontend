@@ -109,10 +109,17 @@ export class LoginComponent {
     // console.log('Login successful', data);
     // console.log('Token stored:', this.auth.getToken());
 
-    this.loading = false;
+this.auth.setSession(data.token, data.role);
 
-    // ✅ navigate
-    this.router.navigate(['/admin/dashboard']);
+// Store login timestamp
+localStorage.setItem(
+  'loginTime',
+  Date.now().toString()
+);
+
+this.loading = false;
+
+this.router.navigate(['/admin/dashboard']);
   },
 
   error: (err: any) => {

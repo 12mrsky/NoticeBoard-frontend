@@ -127,9 +127,9 @@
             ₹ {{ currentMonthRevenue | number:'1.2-2' }} Cr
           </h2>
 
-          <small>
-            {{ currentMonthName }}
-          </small>
+            <small>
+  {{ currentMonthName }}
+</small>
 
         </div>
 
@@ -165,17 +165,19 @@
 
           <h6>Today's Collection</h6>
 
-          <h2>₹ 0.00 Cr</h2>
+         <h2>
+  ₹ {{ todayCollection | number:'1.2-2' }} Cr
+</h2>
 
-          <small>
-            {{ today | date:'dd MMM yyyy' }}
-          </small>
+   <small>
+  {{ todayCollectionDate }}
+  </small>
 
         </div>
 
       </div>
 
-      <div class="growth-pill positive">
+      <!-- <div class="growth-pill positive">
 
         <i class="bi bi-arrow-up"></i>
 
@@ -183,7 +185,7 @@
 
         <span>vs Yesterday</span>
 
-      </div>
+      </div> -->
 
     </div>
 
@@ -308,12 +310,12 @@
     <input
       type="radio"
       name="licenseType"
-      value="military"
+      value="Oneday"
       [(ngModel)]="licenseType">
 
     <span>
       <i class="bi bi-shield-fill-check"></i>
-      MILITARY
+      One Day
     </span>
   </label>
 
